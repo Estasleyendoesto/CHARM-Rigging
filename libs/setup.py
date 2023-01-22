@@ -4,8 +4,8 @@ from . import constructor
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # Panels
 # - - - - - - - - - - - - - - - - - - - - - - - -
-class CHARA_PT_Main(bpy.types.Panel):
-    # bl_idname = 'chararig.setup_panel'
+class CHARM_PT_Main(bpy.types.Panel):
+    # bl_idname = 'charmrig.setup_panel'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = 'CHARM'
@@ -14,17 +14,14 @@ class CHARA_PT_Main(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         row = layout.row()
-
-        row.operator('chararig.rig_loader', icon='SHADERFX')
-        
-        rig = context.object
+        row.operator('charmrig.rig_loader', icon='SHADERFX')
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # Operators
 # - - - - - - - - - - - - - - - - - - - - - - - -
-class CHARARIG_OT_Loader(bpy.types.Operator):
-    bl_idname = 'chararig.rig_loader'
+class CHARM_OT_Loader(bpy.types.Operator):
+    bl_idname = 'charmrig.rig_loader'
     bl_label = 'Configure MHX Rig'
     bl_description = (
         "First have a selected MHX armature"
@@ -105,8 +102,8 @@ class CHARARIG_OT_Loader(bpy.types.Operator):
 # Register
 # - - - - - - - - - - - - - - - - - - - - - - - -
 classes = (
-    CHARA_PT_Main,
-    CHARARIG_OT_Loader,
+    CHARM_PT_Main,
+    CHARM_OT_Loader,
 )
 
 def register():
