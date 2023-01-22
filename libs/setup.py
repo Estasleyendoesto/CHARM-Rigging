@@ -5,11 +5,10 @@ from . import constructor
 # Panels
 # - - - - - - - - - - - - - - - - - - - - - - - -
 class CHARM_PT_Main(bpy.types.Panel):
-    # bl_idname = 'charmrig.setup_panel'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = 'CHARM'
-    bl_label = 'Setup'
+    bl_label = 'CHARM (0.1)'
 
     def draw(self, context):
         layout = self.layout
@@ -22,7 +21,7 @@ class CHARM_PT_Main(bpy.types.Panel):
 # - - - - - - - - - - - - - - - - - - - - - - - -
 class CHARM_OT_Loader(bpy.types.Operator):
     bl_idname = 'charmrig.rig_loader'
-    bl_label = 'Configure MHX Rig'
+    bl_label = 'To CHARM Rig'
     bl_description = (
         "First have a selected MHX armature"
     )

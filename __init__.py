@@ -1,5 +1,9 @@
 from .libs import (
     setup,
+    switch,
+    pose,
+    animation,
+    layers,
     )
 
 bl_info = {
