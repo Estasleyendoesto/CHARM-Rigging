@@ -13,14 +13,14 @@ class CHARM_PT_Main(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         row = layout.row()
-        row.operator('charmrig.rig_loader', icon='SHADERFX')
+        row.operator('charm.rig_loader', icon='SHADERFX')
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # Operators
 # - - - - - - - - - - - - - - - - - - - - - - - -
 class CHARM_OT_Loader(bpy.types.Operator):
-    bl_idname = 'charmrig.rig_loader'
+    bl_idname = 'charm.rig_loader'
     bl_label = 'To CHARM Rig'
     bl_description = (
         "First have a selected MHX armature"
@@ -39,16 +39,13 @@ class CHARM_OT_Loader(bpy.types.Operator):
             return True
 
         # If transform already applied
-        key = 'CharmRig'
+        key = 'charm_rig'
         if rig.get(key, False):
             self.report({"WARNING"}, "CHARM has already been applied")
             return True
         else:
-            rig[key] = True
-            ui = rig.id_properties_ui(key)
-            ui.update(
-                default = False, 
-            )
+            bpy.types.Object.charm_rig = bpy.props.BoolProperty()
+            rig.charm_rig = True
 
         return False
 
@@ -66,7 +63,7 @@ class CHARM_OT_Loader(bpy.types.Operator):
 
     def execute(self, context):
         # Rig selected
-        rig = context.object
+        rig = context.active_object
         
         # If is rigged
         if self.is_rigged(rig):

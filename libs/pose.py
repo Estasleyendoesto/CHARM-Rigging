@@ -12,10 +12,10 @@ class CHARM_PT_Pose(bpy.types.Panel):
 
     @classmethod
     def poll(cls, context):
-        return context.object.get('CharmRig', False)
+        return context.active_object.get('charm_rig', False)
 
     def draw(self, context):
-        rig = context.object
+        rig = context.active_object
         layout = self.layout
 
         row = layout.row()

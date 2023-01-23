@@ -1,14 +1,13 @@
 import bpy
-from .mhxLayers import *
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # Panels
 # - - - - - - - - - - - - - - - - - - - - - - - -
-class CHARM_PT_Layers(bpy.types.Panel):
+class CHARM_PT_Character(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = 'CHARM'
-    bl_label = 'Layers'
+    bl_label = 'Character'
     bl_options = {'DEFAULT_CLOSED'}
 
     @classmethod
@@ -17,23 +16,13 @@ class CHARM_PT_Layers(bpy.types.Panel):
 
     def draw(self, context):
         rig = context.active_object
-        
-        # Layers vibility
-        for (left,right) in MhxLayers:
-            row = self.layout.row()
-            if type(left) == str:
-                row.label(text=left)
-                row.label(text=right)
-            else:
-                for (n, name, prop) in [left,right]:
-                    row.prop(rig.data, "layers", index=n, toggle=True, text=name)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # Register
 # - - - - - - - - - - - - - - - - - - - - - - - -
 classes = (
-    CHARM_PT_Layers,
+    CHARM_PT_Character,
 )
 
 def register():

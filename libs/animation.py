@@ -12,7 +12,7 @@ class CHARM_PT_Animation(bpy.types.Panel):
 
     @classmethod
     def poll(cls, context):
-        return context.object.get('CharmRig', False)
+        return context.active_object.get('charm_rig', False)
 
     def draw(self, context):
         layout = self.layout
