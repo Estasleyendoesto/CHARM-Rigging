@@ -16,6 +16,20 @@ class CHARM_PT_Character(bpy.types.Panel):
 
     def draw(self, context):
         rig = context.active_object
+        layout = self.layout
+        
+        # Charm_props object
+        charm_props_object = None
+        for c in rig.children:
+            if c.name == 'Charm_props':
+                charm_props_object = c
+
+        for prop in charm_props_object.keys():
+            row = layout.row()
+            # Name
+            row.label(text=prop)
+            # Value
+            row.prop(charm_props_object, '["%s"]' % prop, text='')
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - -

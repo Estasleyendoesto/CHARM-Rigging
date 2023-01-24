@@ -61,6 +61,23 @@ class CHARM_OT_Loader(bpy.types.Operator):
                     if lc.collection == c:
                         lc.exclude = True
 
+    def add_props_armature(self, rig, collection):
+        # New Armature
+        object_name = "Charm_props"
+        armature_object = bpy.data.objects.new(object_name, bpy.data.armatures.new(object_name))
+        collection.objects.link(armature_object)
+        # Selection
+        bpy.context.view_layer.objects.active = rig
+        rig.select_set(True)
+        armature_object.select_set(True)
+        # Emparenting
+        bpy.ops.object.parent_set(type='ARMATURE_AUTO')
+        # Hide
+        armature_object.hide_viewport = True
+        armature_object.hide_render = True
+        armature_object.hide_select = True
+        armature_object.hide_set(True)
+
     def execute(self, context):
         # Rig selected
         rig = context.active_object
@@ -87,6 +104,7 @@ class CHARM_OT_Loader(bpy.types.Operator):
             parent.children.link(c)
             constructor.run(context)
             self.collection_visibility(context, c)
+            self.add_props_armature(rig, parent)
 
         # Clear
         D.libraries.remove(D.libraries.get('customShapes.blend'))      
