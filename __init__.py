@@ -1,16 +1,18 @@
 from .libs import (
+    props,
     setup,
+    character,
+    layers,
     switch,
     pose,
     animation,
-    layers,
-    )
+)
 
 bl_info = {
     "name" : "CHARM",
     "author" : "Megaera",
     "description" : "Easy Rigging with Character Customization for MHX",
-    "blender" : (3, 4, 1),
+    "blender" : (3, 4, 0),
     "version" : (0, 1, 0),
     "location" : "3D View > Sidebar > CHARM",
     "warning" : "",

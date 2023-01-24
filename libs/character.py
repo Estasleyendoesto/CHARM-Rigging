@@ -17,7 +17,7 @@ class CHARM_PT_Character(bpy.types.Panel):
     def draw(self, context):
         rig = context.active_object
         layout = self.layout
-        
+
         # Charm_props object
         charm_props_object = None
         for c in rig.children:
@@ -27,9 +27,19 @@ class CHARM_PT_Character(bpy.types.Panel):
         for prop in charm_props_object.keys():
             row = layout.row()
             # Name
-            row.label(text=prop)
+            # row.label(text=prop)
             # Value
-            row.prop(charm_props_object, '["%s"]' % prop, text='')
+            row.prop(charm_props_object, '["%s"]' % prop)
+
+
+        # Custom Operators
+        for item in rig.charm_opts:
+            row = layout.row()
+
+            op = row.operator('charm.run_script', text=item.name)
+            op.filename = item.name
+            op.file_path = item.file_path
+            op.text_name = item.script_name
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
