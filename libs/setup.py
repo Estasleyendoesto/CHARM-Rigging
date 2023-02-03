@@ -1,4 +1,5 @@
 import bpy
+import uuid
 from . import constructor
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
@@ -46,6 +47,9 @@ class CHARM_OT_Loader(bpy.types.Operator):
         else:
             bpy.types.Object.charm_rig = bpy.props.BoolProperty()
             rig.charm_rig = True
+            # Charm_props subarmature name
+            bpy.types.Object.charm_props_name = bpy.props.StringProperty()
+            rig.charm_props_name = 'Charm_props_%s' % str(uuid.uuid4())[:8]
 
         return False
 
@@ -63,7 +67,7 @@ class CHARM_OT_Loader(bpy.types.Operator):
 
     def add_props_armature(self, rig, collection):
         # New Armature
-        object_name = "Charm_props"
+        object_name = rig.get('charm_props_name', None)
         armature_object = bpy.data.objects.new(object_name, bpy.data.armatures.new(object_name))
         collection.objects.link(armature_object)
         # Selection

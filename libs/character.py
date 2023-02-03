@@ -19,9 +19,10 @@ class CHARM_PT_Character(bpy.types.Panel):
         layout = self.layout
 
         # Charm_props object
+        charm_props_name = rig.get('charm_props_name', None)
         charm_props_object = None
         for c in rig.children:
-            if c.name == 'Charm_props':
+            if c.name == charm_props_name:
                 charm_props_object = c
 
         for prop in charm_props_object.keys():
